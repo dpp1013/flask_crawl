@@ -54,14 +54,35 @@ def api3(name):
 
 
 @app.route('/')
-def index():
+def getindex():
     '''
-    如果我们直接访问这个网站会有错误，因为没有provice与city参数
+    服务器对与客户端以get方式发送的请求，接受该请求的方式
     '''
     try:
         province = flask.request.args.get('province') if "province" in flask.request.args else ""
         city = flask.request.args.get('city') if "city" in flask.request.args else ""
         return province + ',' + city
+    except Exception as err:
+        return str(err)
+
+
+@app.route('/postExample', methods=['GET', 'POST'])
+def postindex():
+    try:
+        province = flask.request.form.get('province') if 'province' in flask.request.form else ""
+        city = flask.request.form.get('province') if 'city' in flask.request.form else ""
+        return province + "," + city
+    except Exception as err:
+        return str(err)
+
+
+@app.route('/mix', methods=['POST'])
+def mix():
+    try:
+        province = flask.request.args.get('province') if "province" in flask.request.args else ""
+        city = flask.request.args.get('city') if "city" in flask.request.args else ""
+        note = flask.request.form.get('note') if 'note' in flask.request.form else ""
+        return 'province=' + province + 'city=' + city + 'note=' + note
     except Exception as err:
         return str(err)
 
