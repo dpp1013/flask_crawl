@@ -8,8 +8,10 @@ app = flask.Flask(__name__)
 
 @app.route('/')
 def writefile():
+    if os.path.exists('图像.jpg'):
+        st="<img scr='图像.jpg' width='165' height='60' background-color='red'>"
     if os.path.exists('students.txt'):
-        st = "<h3>学生信息表</h3>" + "<table border='1' width='300'>"
+        st =st+ "<h3>学生信息表</h3>" + "<table border='1' width='300'>"
         file = open('students.txt', 'r', encoding='utf-8')
         while True:
             s = file.readline().strip('\n')
