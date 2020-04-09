@@ -13,7 +13,7 @@ def reading():
 
 if __name__ == '__main__':
     r = threading.Thread(target=reading)
-    r.setDaemon(True)  # 设置线程是后台的线程，主程序执行完毕，其他线程任然可以执行
+    r.setDaemon(False)  # 设置线程是后台的线程，主程序执行完毕，其他线程任然可以执行
     r.start()
     r.join()    # r进程
     print('The end')
